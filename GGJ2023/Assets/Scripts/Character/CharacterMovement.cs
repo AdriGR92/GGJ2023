@@ -8,6 +8,21 @@ namespace firstpart
     {
         //
         public float speed;
+        [SerializeField] private float jumpForce;
+        private Rigidbody rigidbody;
+
+        [Header("GroundCheck")]
+        public bool isGrounded;
+        public LayerMask groundMask;
+        public Transform groundCheck;
+        float widthGroundCheck = 1f;
+        float heightGroundCheck = 1f;
+        float deepGroundCheck = 1f;
+
+        private void Start()
+        {
+            rigidbody = GetComponent<Rigidbody>();
+        }
 
         void Update()
         {
@@ -26,6 +41,31 @@ namespace firstpart
                 this.gameObject.transform.Translate(-Vector3.right * speed * Time.deltaTime);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
+
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Jump();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            Collider[] colls = Physics.OverlapBox(groundCheck.position, new Vector3(widthGroundCheck, heightGroundCheck, deepGroundCheck), Quaternion.identity, groundMask);
+            isGrounded = colls.Length > 0;
+        }
+
+        private void OnDrawGizmos()
+        {
+            // indicamos el color del gizmo
+            Gizmos.color = Color.white;
+            // dibujamos un cubo en la posición indicada
+            Gizmos.DrawCube(groundCheck.position, new Vector3(widthGroundCheck, heightGroundCheck, deepGroundCheck));
+        }
+
+        private void Jump()
+        {
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
