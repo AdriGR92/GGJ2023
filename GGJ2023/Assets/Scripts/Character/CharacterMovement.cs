@@ -6,7 +6,7 @@ namespace firstpart
 {
     public class CharacterMovement : MonoBehaviour
     {
-        //
+        public GameObject characterModel;
         public float speed;
         [SerializeField] private float jumpForce;
         private Rigidbody rigidbody;
@@ -33,13 +33,13 @@ namespace firstpart
             if (VirtualInputManager.Instance.MoveRight)
             {
                 this.gameObject.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                characterModel.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
             if (VirtualInputManager.Instance.MoveLeft)
             {
                 this.gameObject.transform.Translate(-Vector3.right * speed * Time.deltaTime);
-                this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                characterModel.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
 
