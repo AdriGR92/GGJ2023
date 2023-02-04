@@ -3,7 +3,12 @@ guid: 9145b11605679194aaa18e2c8db28b19
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dirt_Texture
+    second: {fileID: 2100000, guid: 471f29b39880653458b21b3a22e41d34, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
