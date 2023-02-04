@@ -47,6 +47,11 @@ namespace firstpart
             {
                 Jump();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                GameManager.instance.ManagePlatforms(!GameManager.instance.isActivePlatforms);
+            }
         }
 
         private void FixedUpdate()
@@ -67,6 +72,7 @@ namespace firstpart
         {
             rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+
     }
 }
 
