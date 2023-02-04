@@ -31,6 +31,7 @@ public class CameraMovement : MonoBehaviour
         while(Vector3.Distance(transform.position, waypoint.position) > distanceToTarget)
         {
             transform.position = Vector3.MoveTowards(transform.position, waypoint.position, speed * Time.deltaTime);
+            //transform.position = Vector3.Slerp(transform.position, waypoints[0].position, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 

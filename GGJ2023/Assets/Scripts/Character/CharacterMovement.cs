@@ -15,9 +15,9 @@ namespace firstpart
         public bool isGrounded;
         public LayerMask groundMask;
         public Transform groundCheck;
-        float widthGroundCheck = 1f;
-        float heightGroundCheck = 1f;
-        float deepGroundCheck = 1f;
+        [SerializeField] private float widthGroundCheck = 0.2f;
+        [SerializeField] private float heightGroundCheck = 0.2f;
+        [SerializeField] private float deepGroundCheck = 0.5f;
 
         private void Start()
         {
