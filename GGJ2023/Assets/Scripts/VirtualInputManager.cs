@@ -22,6 +22,7 @@ namespace firstpart
 
         public bool MoveRight;
         public bool MoveLeft;
+        public bool PauseActive;
     }
 }
 
