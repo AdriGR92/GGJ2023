@@ -24,6 +24,10 @@ namespace firstpart
             {
                 VirtualInputManager.Instance.MoveLeft = false;
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                VirtualInputManager.Instance.PauseActive = !VirtualInputManager.Instance.PauseActive;
+            }
         }
     }
 }
