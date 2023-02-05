@@ -17,6 +17,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float widthGroundCheck = 0.2f;
     [SerializeField] private float heightGroundCheck = 0.2f;
     [SerializeField] private float deepGroundCheck = 0.5f;
+    public AudioClip jumpSound;
+    public AudioClip openPlatformSound;
 
     
 
@@ -54,6 +56,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             GameManager.instance.ManagePlatforms(!GameManager.instance.isActivePlatforms);
+            SoundManager.instance.PlayEffect(openPlatformSound);
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, GameManager.instance.limit.position.x, Camera.main.transform.position.x + 18), transform.position.y, transform.position.z);
@@ -82,6 +85,7 @@ public class CharacterMovement : MonoBehaviour
     private void Jump()
     {
         rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        SoundManager.instance.PlayEffect(jumpSound);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,6 +99,11 @@ public class CharacterMovement : MonoBehaviour
         if (other.CompareTag("Spike") || other.CompareTag("Fall"))
         {
             GameManager.instance.RespawnLevel(gameObject);
+        }
+
+        if (other.CompareTag("End"))
+        {
+            GameManager.instance.PlayVideo();
         }
 
     }
