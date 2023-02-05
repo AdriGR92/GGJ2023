@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public bool isPause;
     public GameObject pausePanel;
 
+    public Transform limit;
+    public Transform checkPoint;
+
     private void Awake()
     {
         if(instance == null)
@@ -95,5 +98,10 @@ public class GameManager : MonoBehaviour
             isPause = false;
             pausePanel.SetActive(false);
         }
+    }
+
+    public void RespawnLevel(GameObject player)
+    {
+        player.transform.position = new Vector3(checkPoint.transform.position.x, checkPoint.transform.position.y, checkPoint.transform.position.z);
     }
 }
